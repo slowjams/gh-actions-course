@@ -16,6 +16,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Show OS
+        shell: bash  # by default, GitHub Actions uses PowerShell as the shell for run steps on Windows runners. You need to specify shell: bash
+                     # if you want your commands to run in a Bash shell (to use Linux-style commands or scripts), otherwise $RUNNER_OS is empty
         run: |
           echo "This job is running on a Windows runner."
           echo "Runner OS: $RUNNER_OS"

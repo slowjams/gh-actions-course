@@ -1,21 +1,16 @@
 name: 04 - Using Actions
 
 on: 
-  push:
-  #workflow_dispatch:
-
+  workflow_dispatch:
 
 jobs:
-  build:
+  build:   # 0. Checkout the code from the repo
+           # 1. Install deps of react app  
+           # 2. Execute automated tests
     runs-on: ubuntu-latest
     defaults:
       run:
          working-directory: 04-using-actions/react-app  # or ./react-app
-
-    # 0. Checkout the code from the repo
-    # 1. Install deps of react app
-    # 2. Execute automated tests
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

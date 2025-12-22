@@ -9,9 +9,16 @@ on:
        type: boolean
        default: false
 
+env:
+  MY_WORKFLOW_VAR: "workflow"     
+  MY_OVERWRITTEN_VAR: "workflow"
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_WORKFLOW_VAR: "job"           
+      MY_OVERWRITTEN_VAR: "job"
     steps:
       - name: Display Information
         run: |
@@ -22,6 +29,9 @@ jobs:
           echo "Workflow: ${{ github.workflow }}"
           echo "Run ID: ${{ github.run_id }}"
           echo "Run Number: ${{ github.run_number }}"
-      - name: Retrieve Variables
+      - name: Retrieve Variables 
         run: |
-          echo "Variable value: ${{ vars.MY_VAR }}"
+          echo "Variable value: ${{ vars.MY_VAR }}"  
+      - name: Print Env Variables
+        run: |
+          echo "Workflow env: ${{ env.MY_WORKFLOW_VAR }}"  

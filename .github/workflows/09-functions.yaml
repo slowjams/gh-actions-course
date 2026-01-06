@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print PR title
-        run: echo ${{ github.event.pull_request.title }}
+        run: echo "${{ github.event.pull_request.title }}"
       - name: Sleep for 5 seconds
         run: sleep 5
       - name: Failing step   

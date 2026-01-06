@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print PR title
-        run: echo "${{ github.event.pull_request.title }}"
+        run: echo ${{ github.event.pull_request.title }}
       - name: Print PR labels
         run: |
           cat << EOF
@@ -36,5 +36,27 @@ jobs:
       - name: I will execute when cancelled 
         if: ${{ cancelled() }}
         run: echo "I will always print if the workflow has been cancelled"
+
+# Print PR labels prints:
+# [
+#   {
+#     "color": "d73a4a",
+#     "default": true,
+#     "description": "Something isn't working",
+#     "id": 9817340411,
+#     "name": "bug",
+#     "node_id": "LA_kwDOQnevy88AAAACSSi5-w",
+#     "url": "https://api.github.com/repos/slowjams/gh-actions-course/labels/bug"
+#   },
+#   {
+#     "color": "0075ca",
+#     "default": true,
+#     "description": "Improvements or additions to documentation",
+#     "id": 9817340415,
+#     "name": "documentation",
+#     "node_id": "LA_kwDOQnevy88AAAACSSi5_w",
+#     "url": "https://api.github.com/repos/slowjams/gh-actions-course/labels/documentation"
+#   }
+# ]
       
      

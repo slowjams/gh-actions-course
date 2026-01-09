@@ -1,7 +1,7 @@
 name: 09 - Using Functions
 
 on:
-  pull_request:
+  # pull_request:
   workflow_dispatch:
 
 
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print PR title
-        run: echo ${{ github.event.pull_request.title }}
+        run: echo "${{ github.event.pull_request.title }}""
       - name: Print PR labels
         run: |
           cat << EOF

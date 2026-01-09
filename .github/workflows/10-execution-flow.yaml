@@ -9,6 +9,12 @@ on:
           default: true
 
 jobs:
+  verify-syntax:
+    runs-on: ubuntu-latest
+    if: inputs.pass-unit-tests
+    steps:
+      - name: Verifying syntax
+        run: echo "Verifying syntax..."
   lint-build:
     runs-on: ubuntu-latest
     steps:

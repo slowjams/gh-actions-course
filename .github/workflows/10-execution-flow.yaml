@@ -11,6 +11,10 @@ on:
           type: boolean
           description: xxx
           required: true
+       target:
+        type: environment
+        required: true
+        description: Which environment the workflow will target
 
 jobs:
   verify-syntax:

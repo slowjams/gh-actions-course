@@ -11,7 +11,7 @@ on:
 jobs:
   verify-syntax:
     runs-on: ubuntu-latest
-    if: inputs.pass-unit-tests
+    if: !inputs.pass-unit-tests
     steps:
       - name: Verifying syntax
         run: echo "Verifying syntax..."

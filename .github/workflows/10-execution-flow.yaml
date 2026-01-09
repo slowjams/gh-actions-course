@@ -7,8 +7,18 @@ on:
           type: boolean
           description: Whether unit tests willi pass or not
           default: true
+       pass-unit-tests2:
+          type: boolean
+          description: xxx
+          required: true
 
 jobs:
+  verify-syntax:
+    runs-on: ubuntu-latest
+    if: inputs.pass-unit-tests2
+    steps:
+      - name: xxx
+        run: echo "xxx..."
   lint-build:
     runs-on: ubuntu-latest
     steps:

@@ -1,17 +1,18 @@
-name: 04 - Using Actions
-
-on: 
+name: 13 - Using Caching
+on:
   workflow_dispatch:
+    inputs:
+      use-cache:
+        description: Whether to execute cache step
+        type: boolean
+        default: true
 
-# 0. Checkout the code from the repo
-# 1. Install deps of react app  
-# 2. Execute automated tests
 jobs:
   build:   
     runs-on: ubuntu-latest
     defaults:
-      run: # <---------------mean the default apply for `run` command below like run: npm ci and run: npm run test
-         working-directory: 04-using-actions/react-app  # or ./react-app
+      run:
+         working-directory: 13-caching/react-app 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -23,5 +24,7 @@ jobs:
         run: npm ci
       - name: Run Unit Tests
         run: npm run test
-        
-    
+      - name: Building
+        run: npm run build
+      - name: Deploying to nonprod
+        run: echo "Deploying to nonprod

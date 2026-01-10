@@ -18,7 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       status: ${{ steps.save.outputs.status }}       # <---------------reference the step ID and the output name defined in that step
-      greeting: ${{ steps.greet.outputs.greeting }}  # <---------------greet is id of step that produces greeting output
+      greeting: ${{ steps.greet.outputs.greeting }}  
+       # <---------------greet and save is id of step that produces greeting output
 
     steps:
       - name: Print GITHUB_OUTPUT path first time

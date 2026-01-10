@@ -3,31 +3,41 @@ name: 12 - Working with Outputs
 on:
   workflow_dispatch:
     inputs:
-      build-status:
+      status:
         type: choice
         options: 
           - success
           - failure
         default: success
+      greeting:
+        type: string
+        default: Hello, World!
    
 jobs:
-  build:
+  saveStatus:
     runs-on: ubuntu-latest
     outputs:
-      build-status: ${{ steps.build1.outputs.status }}   # <---------------reference the step ID and the output name defined in that step
+      status: ${{ steps.save.outputs.status }}   # <---------------reference the step ID and the output name defined in that step
+
     steps:
-      - name: Print GITHUB_OUTPUT path
-        run: echo "$GITHUB_OUTPUT"   # /home/runner/work/_temp/_runner_file_commands/set_output_6daf8654-0d06-4756-ba47-a8648af60fdf
-      - name: Build
-        id: build1       # <---------------define a step ID for the steps that produce outputs
+      - name: Print GITHUB_OUTPUT path first time
+        run: echo "$GITHUB_OUTPUT"   # /home/runner/work/_temp/_runner_file_commands/set_output_a70693bc-2824-4d5d-9252-4000d61c2d13
+      - name: Print GITHUB_OUTPUT path second time    # each step use different output file in same VM
+        run: echo "$GITHUB_OUTPUT"   # /home/runner/work/_temp/_runner_file_commands/set_output_6f559b6f-5e9e-4911-a57b-ef19bf1f4204    
+      - name: Save Outputs
+        id: save      # <---------------define a step ID for the steps that produce outputs
+        run: 
+          echo "status=${{ inputs.status}}" >> $GITHUB_OUTPUT
+      - name: Greet
+        id: greet
         run: |
-          echo "$GITHUB_OUTPUT"
-          echo "status=${{ inputs.build-status}}" >> $GITHUB_OUTPUT
-  deploy:
+          echo "greeting=${{ inputs.greeting}}" >> $GITHUB_OUTPUT
+        
+  printStatus:
     runs-on: ubuntu-latest
-    needs: build
-    if: ${{ needs.build.outputs.build-status == 'success' }}
+    needs: saveStatus
+    if: ${{ needs.saveStatus.outputs.status == 'success' }}
     steps:
-      - name: Deploy
-        run: echo "Deploying"
+      - name: Print Status
+        run: echo "I can print status"
      

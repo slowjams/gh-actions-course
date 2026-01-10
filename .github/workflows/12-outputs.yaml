@@ -11,7 +11,7 @@ on:
         default: success
       greeting:
         type: string
-        default: Hello, World!
+        required: true
    
 jobs:
   saveStatusAndGreeting:

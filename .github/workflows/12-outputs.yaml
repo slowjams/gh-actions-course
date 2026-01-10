@@ -22,6 +22,10 @@ jobs:
        # <---------------greet and save is id of step that produces greeting output
 
     steps:
+      - name: Print Root Directory1
+        run: pwd
+      - name: Print Root Directory2
+        run: echo "Root directory is $GITHUB_WORKSPACE"
       - name: Print GITHUB_OUTPUT path first time
         run: echo "$GITHUB_OUTPUT"   # /home/runner/work/_temp/_runner_file_commands/set_output_a70693bc-2824-4d5d-9252-4000d61c2d13
       - name: Print GITHUB_OUTPUT path second time    # each step use different output file in same VM

@@ -20,7 +20,8 @@ jobs:
         run: echo "$GITHUB_OUTPUT"   # /home/runner/work/_temp/_runner_file_commands/set_output_6daf8654-0d06-4756-ba47-a8648af60fdf
       - name: Build
         id: build1       # <---------------define a step ID for the steps that produce outputs
-        run: 
+        run: |
+          echo "$GITHUB_OUTPUT"
           echo "status=${{ inputs.build-status}}" >> $GITHUB_OUTPUT
   deploy:
     runs-on: ubuntu-latest

@@ -22,7 +22,8 @@ runs:
       id: cache
       with:
         path: ${{ inputs.working-dir }}
-        key: node-modules-${{ hashFiles('${{ inputs.working-dir }}/package-lock.json') }}
+        # key: node-modules-${{ hashFiles('${{ inputs.working-dir }}/package-lock.json') }}  # doesn't work, cannot use "double" expression
+        key: node-modules-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }} 
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci

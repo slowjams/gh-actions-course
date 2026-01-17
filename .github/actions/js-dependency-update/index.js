@@ -6,6 +6,8 @@
 - Mark actions as failed or succeeded
 - Log messages at different levels (info, warning, error)
 - Group logs for better readability
+
+Octokit is the tool you use in GitHub Actions to interact with the GitHub API easily and securely.
 */
 
 const core = require('@actions/core');
@@ -15,3 +17,5 @@ async function run() {
 }
 
 run()
+
+// incomplete, to be work on the future
